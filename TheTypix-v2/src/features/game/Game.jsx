@@ -6,10 +6,12 @@ import Letters from "./Letters";
 function Game() {
   const [letterList, setLetterList] = useState([]);
 
+  function handleRemoveLetter() {
+    setLetterList((prevLetters) => prevLetters.slice(1));
+  }
+
   useEffect(() => {
     const intervalId = setInterval(() => {
-      const randomXPosition = Math.random() * window.innerWidth;
-      const maxYPosition = window.innerHeight - 200;
       const randomLetter = LETTERS.charAt(
         Math.floor(Math.random() * LETTERS.length)
       );
@@ -18,8 +20,7 @@ function Game() {
         <Letters
           key={Date.now()}
           randomLetter={randomLetter}
-          randomXPosition={randomXPosition}
-          maxYPosition={maxYPosition}
+          onRemove={() => handleRemoveLetter()}
         />,
       ]);
     }, TIME_OFFSET);

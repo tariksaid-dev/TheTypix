@@ -16,7 +16,7 @@ export default {
         },
       },
       animation: {
-        moveDown: "moveDown 5s linear infinite",
+        moveDown: "moveDown 1s linear infinite",
       },
     },
   },
