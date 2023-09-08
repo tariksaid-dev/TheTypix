@@ -3,7 +3,7 @@ import { LETTERS, TIME_OFFSET } from "../../utils/constants";
 import { useEffect } from "react";
 import Letters from "./Letters";
 
-function Game() {
+function GameScreen() {
   const [letterList, setLetterList] = useState([]);
 
   function handleRemoveLetter() {
@@ -44,4 +44,4 @@ function Game() {
   return <div className="relative w-max h-screen">{letterList}</div>;
 }
 
-export default Game;
+export default GameScreen;

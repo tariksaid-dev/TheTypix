@@ -1,18 +1,18 @@
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../ui/Button";
-import Game from "../features/game/Game";
+import Input from "../ui/Input";
+import { useState } from "react";
+import LoginForm from "../features/authentication/LoginForm";
 
 function Homepage() {
-  const [isStarted, setIsStarted] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <>
-      {!isStarted && (
-        <Button type="primary" onClick={() => setIsStarted(true)}>
-          Start
-        </Button>
-      )}
-      {isStarted && <Game />}
+      <LoginForm />
+      <Button type="primary" onClick={() => navigate(`/game/${name}`)}>
+        Start
+      </Button>
     </>
   );
 }
