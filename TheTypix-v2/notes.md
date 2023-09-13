@@ -1,15 +1,13 @@
-Juego
+1. Pantalla de bienvenida
 
-1-> isStarted, setIsStarted : bool
+2. Menú con selección de nivel y dificultad (setparams) y posibilidad de ver el ranking
 
-2-> letras : array? string? obj?
+3. Juego (getparams)
 
-3-> vidas: int(3)
+4. Opción para subir resultados con puntos de 3 + nombre no repetido
 
-4-> tiempo/contador: int(60?)
+5. -> 2
 
-5-> letrasEnPantalla : array? string? obj?
+Opt. Ranking
 
-6-> puntuación: int
-
-Necesito en estado global el nombre, el tiempo
+Ranking: name, score, date

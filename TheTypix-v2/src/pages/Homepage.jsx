@@ -1,19 +1,21 @@
-import { useNavigate } from "react-router-dom";
+import { useSettings } from "../features/context/SettingsContext";
 import Button from "../ui/Button";
-import Input from "../ui/Input";
-import { useState } from "react";
-import LoginForm from "../features/authentication/LoginForm";
+import Title from "../ui/Title";
 
 function Homepage() {
-  const navigate = useNavigate();
+  const { dispatch } = useSettings();
+
+  function handleStart() {
+    dispatch({ type: "setSettings" });
+  }
 
   return (
-    <>
-      <LoginForm />
-      <Button type="primary" onClick={() => navigate(`/game/${name}`)}>
+    <div className="flex flex-col items-center gap-28">
+      <Title />
+      <Button type="primary" onClick={handleStart}>
         Start
       </Button>
-    </>
+    </div>
   );
 }
 

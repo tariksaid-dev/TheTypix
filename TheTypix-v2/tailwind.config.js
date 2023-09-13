@@ -14,9 +14,17 @@ export default {
           "0%": { top: "0" },
           "100%": { top: "var(--topDistance)" },
         },
+        bounceAndDescend: {
+          // "0%, 100%": { transform: "translateY(0) translateX(0)" },
+          "30%": { transform: "translateY(30vh) translateX(-80px)" },
+          "70%": { transform: "translateY(70vh) translateX(80px)" },
+          "100%": { transform: "translateY(99vh) translateX(50px)" },
+        },
+        descend: {},
       },
       animation: {
-        moveDown: "moveDown 1s linear infinite",
+        moveDown: "moveDown 4s linear infinite",
+        bounceAndDescend: "bounceAndDescend 5s linear infinite",
       },
     },
   },

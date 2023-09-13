@@ -1,36 +1,20 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-
+import { useSettings } from "./features/context/SettingsContext";
+import Options from "./features/options/OptionsForm";
 import Homepage from "./pages/Homepage";
+import AppLayout from "./ui/AppLayout";
 import Game from "./pages/Game";
-import Ranking from "./pages/Ranking";
-import PageNotFound from "./pages/PageNotFound";
-import LoginForm from "./features/authentication/LoginForm";
-import Login from "./pages/Login";
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 0,
-    },
-  },
-});
+import GameFinished from "./pages/GameFinished";
 
 function App() {
+  const { status } = useSettings();
+
   return (
-    <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools initialIsOpen={false} />
-      <BrowserRouter>
-        <Routes>
-          <Route index element={<Navigate replace to="login" />} />
-          <Route path="login" element={<Login />} />
-          <Route path="game/:userName" element={<Game />} />
-          <Route path="ranking" element={<Ranking />} />
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </QueryClientProvider>
+    <AppLayout>
+      {status === "atHomepage" && <Homepage />}
+      {status === "settingOptions" && <Options />}
+      {status === "gameOn" && <Game />}
+      {status === "gameFinished" && <GameFinished />}
+    </AppLayout>
   );
 }
 

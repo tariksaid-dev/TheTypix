@@ -1,5 +1,4 @@
 function FormRowVertical({ label, error, children }) {
-  console.log(children.props.id);
   return (
     <div className="flex flex-col gap-3 py-5 text-green-500">
       {label && (
