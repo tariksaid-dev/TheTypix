@@ -9,6 +9,7 @@ const initialState = {
   points: 0,
   errors: 0,
   secondsRemaining: null,
+  letterList: [],
 };
 
 function reducer(state, action) {
@@ -17,7 +18,7 @@ function reducer(state, action) {
       return {
         ...state,
         status: "gameOn",
-        secondsRemaining: 10,
+        secondsRemaining: 100,
       };
     case "setName":
       return {
@@ -50,14 +51,31 @@ function reducer(state, action) {
         ...state,
         errors: state.errors + 1,
       };
+    case "removeLetter":
+      return {
+        ...state,
+        letterList: state.letterList.slice(1),
+      };
+    case "addLetter":
+      return {
+        ...state,
+        letterList: [...state.letterList, action.payload],
+      };
+    case "setLetters":
+      return {
+        ...state,
+        letterList: action.payload,
+      };
     default:
       throw new Error("Ation unknown");
   }
 }
 
 function SettingsProvider({ children }) {
-  const [{ name, level, status, points, secondsRemaining, errors }, dispatch] =
-    useReducer(reducer, initialState);
+  const [
+    { name, level, status, points, secondsRemaining, errors, letterList },
+    dispatch,
+  ] = useReducer(reducer, initialState);
 
   return (
     <SettingsContext.Provider
@@ -69,6 +87,7 @@ function SettingsProvider({ children }) {
         secondsRemaining,
         errors,
         dispatch,
+        letterList,
       }}
     >
       {children}

@@ -1,37 +1,33 @@
-import { useState } from "react";
 import { LETTERS, TIME_OFFSET } from "../../utils/constants";
+import { lettersForLevel } from "../../utils/lettersForLevel";
+import { useSettings } from "../context/SettingsContext";
 import { useEffect } from "react";
 import Letters from "./Letters";
-import { useSettings } from "../context/SettingsContext";
-import { lettersForLevel } from "../../utils/lettersForLevel";
 
 function GameScreen() {
-  const [letterList, setLetterList] = useState([]);
-  const { level, dispatch } = useSettings();
+  const { level, letterList, dispatch } = useSettings();
   const lettersFilteredByLevel = lettersForLevel(level);
-
-  function handleRemoveLetter() {
-    setLetterList((prevLetters) => prevLetters.slice(1));
-  }
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       const randomLetter = lettersFilteredByLevel.charAt(
-        Math.floor(Math.random() * LETTERS.length)
+        Math.floor(Math.random() * lettersFilteredByLevel.length)
       );
-      console.log("pop", randomLetter);
-      setLetterList([
-        ...letterList,
-        <Letters
-          key={Date.now()}
-          randomLetter={randomLetter}
-          onRemove={() => handleRemoveLetter()}
-        />,
-      ]);
-      console.log(...letterList);
+
+      dispatch({
+        type: "addLetter",
+        payload: (
+          <Letters
+            key={Date.now()}
+            randomLetter={randomLetter}
+            onRemove={() => dispatch({ type: "removeLetter" })}
+            onLetterMissed={() => dispatch({ type: "errorUp" })}
+          />
+        ),
+      });
     }, TIME_OFFSET);
     return () => clearInterval(intervalId);
-  }, [letterList, lettersFilteredByLevel]);
+  }, [dispatch, lettersFilteredByLevel]);
 
   useEffect(() => {
     function handleKeyPress(e) {
@@ -42,7 +38,7 @@ function GameScreen() {
 
         return letter.props.randomLetter !== keyPressed;
       });
-      setLetterList(filteredLetters);
+      dispatch({ type: "setLetters", payload: filteredLetters });
     }
     window.addEventListener("keydown", handleKeyPress);
     return () => {

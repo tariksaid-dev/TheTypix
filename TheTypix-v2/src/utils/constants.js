@@ -1,7 +1,7 @@
 export const LETTERS =
   "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890";
 
-export const TIME_OFFSET = 800; //interval between letters starting, have to be faster over time
+export const TIME_OFFSET = 1000; //interval between letters starting, have to be faster over time
 
 export const DURATION = 10000;
 

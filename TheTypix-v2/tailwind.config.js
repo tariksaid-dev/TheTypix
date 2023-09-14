@@ -24,7 +24,7 @@ export default {
       },
       animation: {
         moveDown: "moveDown 4s linear infinite",
-        bounceAndDescend: "bounceAndDescend 5s linear infinite",
+        bounceAndDescend: "bounceAndDescend 15s linear infinite",
       },
     },
   },
