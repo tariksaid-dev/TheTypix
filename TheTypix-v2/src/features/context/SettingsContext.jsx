@@ -10,6 +10,7 @@ const initialState = {
   errors: 0,
   secondsRemaining: null,
   letterList: [],
+  lives: 3,
 };
 
 function reducer(state, action) {
@@ -66,14 +67,29 @@ function reducer(state, action) {
         ...state,
         letterList: action.payload,
       };
+    case "liveDown":
+      return {
+        ...state,
+        lives: state.lives !== 0 ? state.lives - 1 : state.lives === 0,
+        status: state.lives === 1 ? "gameFinished" : state.status,
+      };
     default:
-      throw new Error("Ation unknown");
+      throw new Error("Action unknown");
   }
 }
 
 function SettingsProvider({ children }) {
   const [
-    { name, level, status, points, secondsRemaining, errors, letterList },
+    {
+      name,
+      level,
+      status,
+      points,
+      secondsRemaining,
+      errors,
+      letterList,
+      lives,
+    },
     dispatch,
   ] = useReducer(reducer, initialState);
 
@@ -88,6 +104,7 @@ function SettingsProvider({ children }) {
         errors,
         dispatch,
         letterList,
+        lives,
       }}
     >
       {children}

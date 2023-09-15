@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import { useSettings } from "../context/SettingsContext";
 
 function Letters({ randomLetter, onRemove, onLetterMissed }) {
   const randomXPosition = Math.random() * (window.innerWidth - 100);

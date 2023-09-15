@@ -1,4 +1,4 @@
-import { LETTERS, TIME_OFFSET } from "../../utils/constants";
+import { TIME_OFFSET } from "../../utils/constants";
 import { lettersForLevel } from "../../utils/lettersForLevel";
 import { useSettings } from "../context/SettingsContext";
 import { useEffect } from "react";
@@ -21,7 +21,7 @@ function GameScreen() {
             key={Date.now()}
             randomLetter={randomLetter}
             onRemove={() => dispatch({ type: "removeLetter" })}
-            onLetterMissed={() => dispatch({ type: "errorUp" })}
+            onLetterMissed={() => dispatch({ type: "liveDown" })}
           />
         ),
       });
@@ -32,10 +32,11 @@ function GameScreen() {
   useEffect(() => {
     function handleKeyPress(e) {
       const keyPressed = e.key;
+      if (letterList.some((el) => el.props.randomLetter !== keyPressed))
+        dispatch({ type: "errorUp" });
       const filteredLetters = letterList.filter((letter) => {
         if (letter.props.randomLetter === keyPressed)
           dispatch({ type: "pointUp" });
-
         return letter.props.randomLetter !== keyPressed;
       });
       dispatch({ type: "setLetters", payload: filteredLetters });
