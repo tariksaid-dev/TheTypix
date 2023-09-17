@@ -4,7 +4,7 @@ import Input from "../../ui/Input";
 import SelectLevel from "./SelectLevel";
 import { useSettings } from "../context/SettingsContext";
 
-function Options() {
+function OptionsForm() {
   const { name, level, dispatch } = useSettings();
 
   function setName(e) {
@@ -53,4 +53,4 @@ function Options() {
   );
 }
 
-export default Options;
+export default OptionsForm;
