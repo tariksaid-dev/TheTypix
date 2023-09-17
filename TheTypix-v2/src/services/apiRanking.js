@@ -1,7 +1,10 @@
 import supabase from "./supabase";
 
 export async function getRanking() {
-  const { data, error } = await supabase.from("ranking").select("*").single();
+  const { data, error } = await supabase
+    .from("ranking")
+    .select("*")
+    .order("points", { ascending: false });
 
   if (error) {
     console.log(error);

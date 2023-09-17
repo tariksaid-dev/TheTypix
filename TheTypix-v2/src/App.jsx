@@ -12,7 +12,8 @@ function App() {
     <AppLayout>
       {status === "atHomepage" && <Homepage />}
       {status === "settingOptions" && <Options />}
-      {status === "gameOn" && <Game />}
+      {/* {status === "gameOn" && <Game />} */}
+      {status === "gameOn" && <GameFinished />}
       {status === "gameFinished" && <GameFinished />}
     </AppLayout>
   );

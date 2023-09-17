@@ -12,7 +12,7 @@ const initialState = {
   lives: 3,
   secondsRemaining: null,
   letterList: [],
-  ranking: [],
+  ranking: null,
 };
 
 function reducer(state, action) {
@@ -75,6 +75,11 @@ function reducer(state, action) {
         lives: state.lives !== 0 ? state.lives - 1 : state.lives === 0,
         status: state.lives === 1 ? "gameFinished" : state.status,
       };
+    case "setRanking":
+      return {
+        ...state,
+        ranking: action.payload,
+      };
     default:
       throw new Error("Action unknown");
   }
@@ -99,7 +104,7 @@ function SettingsProvider({ children }) {
   useEffect(() => {
     async function ranking() {
       const data = await getRanking();
-      initialState.ranking.push(data);
+      dispatch({ type: "setRanking", payload: data });
     }
     ranking();
   }, []);
