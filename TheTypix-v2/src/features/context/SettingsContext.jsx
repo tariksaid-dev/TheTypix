@@ -82,7 +82,8 @@ function reducer(state, action) {
       };
     case "restart":
       return {
-        initialState,
+        ...initialState,
+        status: "settingOptions",
       };
     default:
       throw new Error("Action unknown");
@@ -109,11 +110,11 @@ function SettingsProvider({ children }) {
   const totalPoints = correctAnswers - errors * 3 + livesPoints;
 
   useEffect(() => {
-    async function ranking() {
+    async function fetchRanking() {
       const data = await getRanking();
       dispatch({ type: "setRanking", payload: data });
     }
-    ranking();
+    fetchRanking();
   }, []);
 
   return (
