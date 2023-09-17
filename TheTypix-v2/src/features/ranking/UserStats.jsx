@@ -7,6 +7,9 @@ function UserStats() {
 
   return (
     <div className="border border-solid border-gray-500 py-10 px-16 bg-gray-900">
+      <h1 className="text-green-500 text-center text-3xl font-bold">
+        YOUR RESULTS
+      </h1>
       <FormRowHorizontal label="Name">
         <span type="text" id="name">
           {name ? `${name}` : "Your name"}

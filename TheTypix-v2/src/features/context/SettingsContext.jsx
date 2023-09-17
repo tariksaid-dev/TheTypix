@@ -80,6 +80,10 @@ function reducer(state, action) {
         ...state,
         ranking: action.payload,
       };
+    case "restart":
+      return {
+        initialState,
+      };
     default:
       throw new Error("Action unknown");
   }
