@@ -12,7 +12,7 @@ function OptionsForm() {
   }
 
   function setLevel(e) {
-    dispatch({ type: "setLevel", payload: e.target.value.slice(3) });
+    dispatch({ type: "setLevel", payload: e.target.value });
   }
 
   function handleSubmit(e) {
@@ -39,8 +39,8 @@ function OptionsForm() {
         <SelectLevel
           value={level}
           options={[
-            { value: "lvl1", label: "Level 1" },
-            { value: "lvl2", label: "Level 2" },
+            { value: 1, label: "Level 1" },
+            { value: 2, label: "Level 2" },
           ]}
           onChange={setLevel}
         />

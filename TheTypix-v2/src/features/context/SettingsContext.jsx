@@ -5,7 +5,7 @@ const SettingsContext = createContext();
 
 const initialState = {
   name: "",
-  level: "1",
+  level: 1,
   status: "atHomepage",
   correctAnswers: 0,
   errors: 0,
@@ -115,7 +115,7 @@ function SettingsProvider({ children }) {
       dispatch({ type: "setRanking", payload: data });
     }
     fetchRanking();
-  }, [ranking]);
+  }, []);
 
   return (
     <SettingsContext.Provider
