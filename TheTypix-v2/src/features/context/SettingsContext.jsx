@@ -1,4 +1,5 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
+import { getRanking } from "../../services/apiRanking";
 
 const SettingsContext = createContext();
 
@@ -8,9 +9,10 @@ const initialState = {
   status: "atHomepage",
   points: 0,
   errors: 0,
+  lives: 3,
   secondsRemaining: null,
   letterList: [],
-  lives: 3,
+  ranking: [],
 };
 
 function reducer(state, action) {
@@ -89,9 +91,18 @@ function SettingsProvider({ children }) {
       errors,
       letterList,
       lives,
+      ranking,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+    async function ranking() {
+      const data = await getRanking();
+      initialState.ranking.push(data);
+    }
+    ranking();
+  }, []);
 
   return (
     <SettingsContext.Provider
@@ -105,6 +116,7 @@ function SettingsProvider({ children }) {
         dispatch,
         letterList,
         lives,
+        ranking,
       }}
     >
       {children}
