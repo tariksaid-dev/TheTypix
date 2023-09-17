@@ -7,7 +7,7 @@ const initialState = {
   name: "",
   level: "1",
   status: "atHomepage",
-  points: 0,
+  correctAnswers: 0,
   errors: 0,
   lives: 3,
   secondsRemaining: null,
@@ -21,7 +21,7 @@ function reducer(state, action) {
       return {
         ...state,
         status: "gameOn",
-        secondsRemaining: 100,
+        secondsRemaining: 30,
       };
     case "setName":
       return {
@@ -44,10 +44,10 @@ function reducer(state, action) {
         ...state,
         status: "settingOptions",
       };
-    case "pointUp":
+    case "correctAnswerUp":
       return {
         ...state,
-        points: state.points + 1,
+        correctAnswers: state.correctAnswers + 1,
       };
     case "errorUp":
       return {
@@ -91,7 +91,7 @@ function SettingsProvider({ children }) {
       name,
       level,
       status,
-      points,
+      correctAnswers,
       secondsRemaining,
       errors,
       letterList,
@@ -100,6 +100,9 @@ function SettingsProvider({ children }) {
     },
     dispatch,
   ] = useReducer(reducer, initialState);
+
+  const livesPoints = lives > 0 ? lives * 10 : -30;
+  const totalPoints = correctAnswers - errors * 3 + livesPoints;
 
   useEffect(() => {
     async function ranking() {
@@ -115,13 +118,14 @@ function SettingsProvider({ children }) {
         name,
         level,
         status,
-        points,
+        correctAnswers,
         secondsRemaining,
         errors,
         dispatch,
         letterList,
         lives,
         ranking,
+        totalPoints,
       }}
     >
       {children}

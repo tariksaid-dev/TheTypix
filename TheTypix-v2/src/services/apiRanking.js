@@ -4,7 +4,7 @@ export async function getRanking() {
   const { data, error } = await supabase
     .from("ranking")
     .select("*")
-    .order("points", { ascending: false });
+    .order("totalPoints", { ascending: false });
 
   if (error) {
     console.log(error);

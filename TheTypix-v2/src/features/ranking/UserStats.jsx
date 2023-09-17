@@ -2,7 +2,8 @@ import { useSettings } from "../context/SettingsContext";
 import FormRowHorizontal from "../../ui/FormRowHorizontal";
 
 function UserStats() {
-  const { name, level, points, errors, lives } = useSettings();
+  const { name, level, errors, lives, totalPoints, correctAnswers } =
+    useSettings();
 
   return (
     <div className="border border-solid border-gray-500 py-10 px-16 bg-gray-900">
@@ -18,9 +19,9 @@ function UserStats() {
         </span>
       </FormRowHorizontal>
 
-      <FormRowHorizontal label="Points">
-        <span type="text" id="points">
-          {points}
+      <FormRowHorizontal label="Correct answers">
+        <span type="text" id="correctAnswers">
+          {correctAnswers}
         </span>
       </FormRowHorizontal>
 
@@ -38,7 +39,7 @@ function UserStats() {
 
       <FormRowHorizontal label="Total points">
         <span type="text" id="total-points">
-          Total points
+          {totalPoints}
         </span>
       </FormRowHorizontal>
     </div>

@@ -36,7 +36,7 @@ function GameScreen() {
         dispatch({ type: "errorUp" });
       const filteredLetters = letterList.filter((letter) => {
         if (letter.props.randomLetter === keyPressed)
-          dispatch({ type: "pointUp" });
+          dispatch({ type: "correctAnswerUp" });
         return letter.props.randomLetter !== keyPressed;
       });
       dispatch({ type: "setLetters", payload: filteredLetters });
