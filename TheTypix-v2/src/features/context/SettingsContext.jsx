@@ -115,7 +115,7 @@ function SettingsProvider({ children }) {
       dispatch({ type: "setRanking", payload: data });
     }
     fetchRanking();
-  }, []);
+  }, [ranking]);
 
   return (
     <SettingsContext.Provider
