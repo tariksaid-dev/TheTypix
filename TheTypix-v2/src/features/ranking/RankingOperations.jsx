@@ -4,8 +4,6 @@ import { useSettings } from "../context/SettingsContext";
 function RankingOperations() {
   const { ranking } = useSettings();
 
-  console.log("ranking: ", ranking);
-
   return (
     <>
       {ranking.map((rank) => (

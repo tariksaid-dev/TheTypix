@@ -12,7 +12,7 @@ function OptionsForm() {
   }
 
   function setLevel(e) {
-    dispatch({ type: "setLevel", payload: e.target.value });
+    dispatch({ type: "setLevel", payload: Number(e.target.value) });
   }
 
   function handleSubmit(e) {

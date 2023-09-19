@@ -109,6 +109,7 @@ function SettingsProvider({ children }) {
   const livesPoints = lives > 0 ? lives * 10 : -30;
   const totalPoints = correctAnswers - errors * 3 + livesPoints;
 
+  // needs to use it on mount of Ranking
   useEffect(() => {
     async function fetchRanking() {
       const data = await getRanking();
