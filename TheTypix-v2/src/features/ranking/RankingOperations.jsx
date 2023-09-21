@@ -6,7 +6,7 @@ function RankingOperations() {
 
   return (
     <>
-      {ranking.map((rank) => (
+      {ranking?.map((rank) => (
         <FormRowHorizontal key={rank?.created_at} label={rank?.name}>
           <span>{rank?.totalPoints}</span>
         </FormRowHorizontal>
