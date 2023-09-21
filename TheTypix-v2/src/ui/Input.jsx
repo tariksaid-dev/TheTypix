@@ -7,6 +7,7 @@ function Input({ type, id, autoComplete, value, onChange }) {
       value={value}
       onChange={onChange}
       className="border border-solid border-gray-600 py-3 px-5 bg-gray-950 font-bold"
+      required
     />
   );
 }
