@@ -3,9 +3,11 @@ import FormRowVertical from "../../ui/FormRowVertical";
 import Input from "../../ui/Input";
 import SelectLevel from "./SelectLevel";
 import { useSettings } from "../context/SettingsContext";
+import toast from "react-hot-toast";
 
 function OptionsForm() {
-  const { name, level, dispatch } = useSettings();
+  const { name, level, ranking, dispatch } = useSettings();
+  const nameUsed = ranking?.filter((rank) => rank.name === name);
 
   function setName(e) {
     dispatch({ type: "setName", payload: e.target.value });
@@ -17,6 +19,10 @@ function OptionsForm() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    if (nameUsed.length > 0) {
+      toast.error("Name already picked!");
+      return;
+    }
     dispatch({ type: "start" });
   }
 

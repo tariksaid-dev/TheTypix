@@ -3,7 +3,7 @@ import { useSettings } from "../features/context/SettingsContext";
 import Ranking from "../features/ranking/Ranking";
 import UserStats from "../features/ranking/UserStats";
 import Button from "../ui/Button";
-import { updateRanking } from "../services/apiRanking";
+import { getRanking, updateRanking } from "../services/apiRanking";
 
 function GameFinished() {
   const { name, totalPoints, errors, level, correctAnswers, lives, dispatch } =
@@ -14,15 +14,26 @@ function GameFinished() {
   }
 
   useEffect(() => {
-    updateRanking({
-      name,
-      totalPoints,
-      errors,
-      level,
-      correctAnswers,
-      livesRemaining: lives,
-    });
-  }, [name, totalPoints, correctAnswers, errors, level, lives]);
+    async function postRanking() {
+      await updateRanking({
+        name,
+        totalPoints,
+        errors,
+        level,
+        correctAnswers,
+        livesRemaining: lives,
+      });
+    }
+    postRanking();
+  }, [correctAnswers, errors, level, lives, name, totalPoints]);
+
+  useEffect(() => {
+    async function fetchRanking() {
+      const data = await getRanking();
+      dispatch({ type: "setRanking", payload: data });
+    }
+    fetchRanking();
+  }, [dispatch]);
 
   return (
     <>
