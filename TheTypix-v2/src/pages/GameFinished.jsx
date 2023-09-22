@@ -14,7 +14,7 @@ function GameFinished() {
   }
 
   useEffect(() => {
-    async function postRanking() {
+    async function fetchRanking() {
       await updateRanking({
         name,
         totalPoints,
@@ -23,17 +23,11 @@ function GameFinished() {
         correctAnswers,
         livesRemaining: lives,
       });
-    }
-    postRanking();
-  }, [correctAnswers, errors, level, lives, name, totalPoints]);
-
-  useEffect(() => {
-    async function fetchRanking() {
       const data = await getRanking();
       dispatch({ type: "setRanking", payload: data });
     }
     fetchRanking();
-  }, [dispatch]);
+  }, [correctAnswers, errors, level, lives, name, totalPoints, dispatch]);
 
   return (
     <>
