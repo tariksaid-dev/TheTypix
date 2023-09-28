@@ -82,6 +82,7 @@ function reducer(state, action) {
       };
     case "restart":
       return {
+        // need to set ranking instead or spreading initialState where ranking is null
         ...initialState,
         status: "settingOptions",
       };

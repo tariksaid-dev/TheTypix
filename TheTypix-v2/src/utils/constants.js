@@ -1,5 +1,5 @@
 export const LETTERS =
-  "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890";
+  'abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890º+-!"$%&/()=?¿¡^*{}[];:_|@#~><';
 
 export const TIME_OFFSET = 1000; //interval between letters starting, have to be faster over time
 

@@ -4,6 +4,7 @@ import Input from "../../ui/Input";
 import SelectLevel from "./SelectLevel";
 import { useSettings } from "../context/SettingsContext";
 import toast from "react-hot-toast";
+import { LETTERS } from "../../utils/constants";
 
 function OptionsForm() {
   const { name, level, ranking, dispatch } = useSettings();
@@ -19,12 +20,15 @@ function OptionsForm() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    console.log(nameUsed);
     if (nameUsed.length > 0) {
       toast.error("Name already picked!");
       return;
     }
     dispatch({ type: "start" });
   }
+
+  console.log(LETTERS.substring(0, 78));
 
   return (
     <form
@@ -47,6 +51,9 @@ function OptionsForm() {
           options={[
             { value: 1, label: "Level 1" },
             { value: 2, label: "Level 2" },
+            { value: 3, label: "Level 3" },
+            { value: 4, label: "Level 4" },
+            { value: 5, label: "Level 5" },
           ]}
           onChange={setLevel}
         />
