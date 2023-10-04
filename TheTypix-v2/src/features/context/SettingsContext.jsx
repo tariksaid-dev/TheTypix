@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { getRanking } from "../../services/apiRanking";
+import { GAME_DURATION } from "../../utils/constants";
 
 const SettingsContext = createContext();
 
@@ -21,7 +22,7 @@ function reducer(state, action) {
       return {
         ...state,
         status: "gameOn",
-        secondsRemaining: 30,
+        secondsRemaining: GAME_DURATION,
       };
     case "setName":
       return {
