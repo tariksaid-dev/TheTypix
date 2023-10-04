@@ -5,7 +5,7 @@ function HeartRow() {
   const { lives } = useSettings();
 
   return (
-    <div className="flex bg-black">
+    <div className="flex">
       {Array.from({ length: lives }, (_, index) => (
         <Heart key={index} />
       ))}

@@ -4,7 +4,6 @@ import Input from "../../ui/Input";
 import SelectLevel from "./SelectLevel";
 import { useSettings } from "../context/SettingsContext";
 import toast from "react-hot-toast";
-import { LETTERS } from "../../utils/constants";
 
 function OptionsForm() {
   const { name, level, ranking, dispatch } = useSettings();
@@ -27,8 +26,6 @@ function OptionsForm() {
     }
     dispatch({ type: "start" });
   }
-
-  console.log(LETTERS.substring(0, 78));
 
   return (
     <form
