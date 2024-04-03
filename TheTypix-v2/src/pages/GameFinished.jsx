@@ -30,8 +30,9 @@ function GameFinished() {
   }, [correctAnswers, errors, level, lives, name, totalPoints, dispatch]);
 
   return (
+    // hacer un layout y unos estilos como dios manda, intercambiar por fragmento y usar un main?
     <>
-      <div className="flex gap-10">
+      <div className="flex gap-10 overflow-y-scroll">
         <UserStats />
         <Ranking />
       </div>
